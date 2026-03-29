@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('activity_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
+            $table->string('username');
+            $tabel->int('activity_score');
             $table->timestamps();
         });
     }
