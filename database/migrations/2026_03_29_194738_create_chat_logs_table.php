@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('chat_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('username');
+            $table->string('message');
             $table->timestamps();
         });
     }
