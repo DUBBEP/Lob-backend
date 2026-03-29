@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::controller(GhostRecordController::class)->group(function () {
-    Route::get('/GameObjects', 'index');
-    Route::get('/GameObjects/{id}', 'show');
-    Route::post('/GameObjects', 'store');
+    Route::get('/GhostRecords', 'index');
+    Route::get('/GhostRecords/{id}', 'show');
+    Route::post('/GhostRecords', 'store');
 });

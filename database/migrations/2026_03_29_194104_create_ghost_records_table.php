@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('ghost_records', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class);
             $table->string('username');
-            $table->json('actions');
+            $table->json('actions'); // array of command objects
             $table->float('duration');
             $table->timestamps();
         });
