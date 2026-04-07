@@ -9,12 +9,11 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'email' => ['required', 'email'],
+            'name'     => ['required'], // You must include the name!
             'password' => ['required'],
         ]);
 
         if (!Auth::attempt($attributes)) {
-            // Return 401 Unauthorized instead of throwing a View Exception
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 

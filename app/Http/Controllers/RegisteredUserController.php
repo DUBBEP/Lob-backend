@@ -18,14 +18,12 @@ class RegisteredUserController extends Controller
         // 1. Validate (Laravel returns 422 JSON automatically if this fails)
         $userAttributes = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(6)],
         ]);
 
         // 2. Create the User
         $user = User::create([
             'name' => $userAttributes['name'],
-            'email' => $userAttributes['email'],
             'password' => bcrypt($userAttributes['password']),
         ]);
 
