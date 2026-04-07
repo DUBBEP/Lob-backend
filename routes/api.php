@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlayerRecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityRecordController;
 use App\Http\Controllers\ChatLogController;
@@ -10,6 +11,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::controller(PlayerRecordController::class)->group(function () {
+    Route::get('/PlayerRecords', 'index');
+    Route::get('/PlayerRecords/{id}', 'show');
+    Route::post('/PlayerRecords', 'store');
+});
 Route::controller(ActivityRecordController::class)->group(function () {
     Route::get('/ActivityRecord', 'index');
     Route::get('/ActivityRecord/{id}', 'show');
