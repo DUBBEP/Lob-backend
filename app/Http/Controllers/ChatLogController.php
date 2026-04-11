@@ -16,7 +16,8 @@ class ChatLogController extends Controller
 
     public function show(ChatLog $id)
     {
-        return respone()->json($id);
+        $record = ChatLog::findOrFail($id);
+        return respone()->json($record);
     }
 
     public function store(Request $request)

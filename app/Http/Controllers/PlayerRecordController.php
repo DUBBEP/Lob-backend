@@ -16,6 +16,7 @@ class PlayerRecordController extends Controller
 
     public function show(PlayerRecord $id)
     {
+        $record = PlayerRecord::findOrFail($id);
         return response()->json($id);
     }
 

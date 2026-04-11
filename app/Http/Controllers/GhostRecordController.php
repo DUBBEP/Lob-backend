@@ -16,7 +16,8 @@ class GhostRecordController extends Controller
 
     public function show(GhostRecord $id)
     {
-        return response()->json($id);
+        $record = GhostRecord::findOrFail($id);
+        return response()->json($record);
     }
 
     public function store(Request $request)
