@@ -30,7 +30,7 @@ Route::controller(ActivityRecordController::class)->group(function () {
     Route::post('/ActivityRecord', 'store');
 });
 
-Route::controller(ChatLog::class)->group(function () {
+Route::controller(ChatLogController::class)->group(function () {
     Route::get('/ChatLog', 'index');
     Route::get('/ChatLog/{id}', 'show');
     Route::post('/ChatLog', 'store');
