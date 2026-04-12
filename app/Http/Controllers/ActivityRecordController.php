@@ -16,8 +16,7 @@ class ActivityRecordController extends Controller
 
     public function show(ActivityRecord $id)
     {
-        $record = ActivityRecord::findOrFail($id);
-        return response()->json($record);
+        return response()->json($id);
     }
 
     public function store(Request $request)
