@@ -16,6 +16,8 @@ Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [SessionController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy']);
+
+    Route::post('/GhostRecords', [GhostRecordController::class, 'store']);
 });
 
 Route::controller(PlayerRecordController::class)->group(function () {
@@ -36,8 +38,5 @@ Route::controller(ChatLogController::class)->group(function () {
     Route::post('/ChatLog', 'store');
 });
 
-Route::controller(GhostRecordController::class)->group(function () {
-    Route::get('/GhostRecords', 'index');
-    Route::get('/GhostRecords/{id}', 'show');
-    Route::post('/GhostRecords', 'store');
-});
+Route::get('/GhostRecords', [GhostRecordController::class, 'index']);
+Route::get('/GhostRecords/{id}', [GhostRecordController::class, 'show']);
