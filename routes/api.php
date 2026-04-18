@@ -28,6 +28,7 @@ Route::controller(ActivityRecordController::class)->group(function () {
     Route::get('/ActivityRecord', 'index');
     Route::get('/ActivityRecord/{id}', 'show');
     Route::post('/ActivityRecord', 'store');
+    Route::get('/ActivityRecord/recent', [ActivityRecordController::class, 'recent']);
 });
 
 Route::controller(ChatLogController::class)->group(function () {
