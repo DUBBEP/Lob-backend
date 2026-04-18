@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [SessionController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -22,21 +26,21 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::controller(PlayerRecordController::class)->group(function () {
     Route::get('/PlayerRecords', 'index');
-    Route::get('/PlayerRecords/{id}', 'show');
+    Route::get('/PlayerRecords/{playerRecord}', 'show');
     Route::post('/PlayerRecords', 'store');
 });
 
 Route::controller(ActivityRecordController::class)->group(function () {
     Route::get('/ActivityRecord', 'index');
-    Route::get('/ActivityRecord/{id}', 'show');
+    Route::get('/ActivityRecord/{activityRecord}', 'show');
     Route::post('/ActivityRecord', 'store');
 });
 
 Route::controller(ChatLogController::class)->group(function () {
     Route::get('/ChatLog', 'index');
-    Route::get('/ChatLog/{id}', 'show');
+    Route::get('/ChatLog/{chatLog}', 'show');
     Route::post('/ChatLog', 'store');
 });
 
 Route::get('/GhostRecords', [GhostRecordController::class, 'index']);
-Route::get('/GhostRecords/{id}', [GhostRecordController::class, 'show']);
+Route::get('/GhostRecords/{ghostRecord}', [GhostRecordController::class, 'show']);
