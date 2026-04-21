@@ -34,7 +34,7 @@ Route::controller(PlayerRecordController::class)->group(function () {
 
 Route::controller(ActivityRecordController::class)->group(function () {
     Route::get('/ActivityRecord', 'index');
-    Route::get('/ActivityRecord/recent', 'recent']);
+    Route::get('/ActivityRecord/recent', 'recent');
     Route::get('/ActivityRecord/{activityRecord}', 'show');
 });
 
