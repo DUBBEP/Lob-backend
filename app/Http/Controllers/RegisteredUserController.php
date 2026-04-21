@@ -15,26 +15,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        // 1. Validate (Laravel returns 422 JSON automatically if this fails)
-        $userAttributes = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Password::min(6)],
+        $request->validate([
+            // 'unique:users,name' checks if the username exists
+            'name' => ['required', 'string', 'max:255', 'unique:users,name'],
+            // Password::min(6) ensures length
+            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::min(6)],
         ]);
 
-        // 2. Create the User
         $user = User::create([
-            'name' => $userAttributes['name'],
-            'password' => bcrypt($userAttributes['password']),
+            'name' => $request->name,
+            'password' => bcrypt($request->password),
         ]);
 
-        // 3. Generate Token for Unity
         $token = $user->createToken('unity_device')->plainTextToken;
 
-        // 4. Return JSON instead of redirect('/')
-        return response()->json([
-            'message' => 'User registered successfully',
-            'token' => $token,
-            'user' => $user
-        ], 201);
+        return response()->json(['token' => $token, 'user' => $user], 201);
     }
 }
