@@ -12,33 +12,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/login', [SessionController::class, 'store']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy']);
+    Route::post('/GhostRecords', [GhostRecordController::class, 'store']);
+    Route::post('/PlayerRecords', [PlayerRecordController::class, 'store']);
+    Route::post('/ActivityRecord', [ActivityRecordController::class], 'store');
+    Route::post('/ChatLog', [ChatLogController::class], 'store');
 });
 
 Route::controller(PlayerRecordController::class)->group(function () {
     Route::get('/PlayerRecords', 'index');
-    Route::get('/PlayerRecords/{id}', 'show');
-    Route::post('/PlayerRecords', 'store');
+    Route::get('/PlayerRecords/{playerRecord}', 'show');
 });
 
 Route::controller(ActivityRecordController::class)->group(function () {
     Route::get('/ActivityRecord', 'index');
-    Route::get('/ActivityRecord/{id}', 'show');
-    Route::post('/ActivityRecord', 'store');
-    Route::get('/ActivityRecord/recent', [ActivityRecordController::class, 'recent']);
+    Route::get('/ActivityRecord/recent', 'recent']);
+    Route::get('/ActivityRecord/{activityRecord}', 'show');
 });
 
 Route::controller(ChatLogController::class)->group(function () {
     Route::get('/ChatLog', 'index');
-    Route::get('/ChatLog/{id}', 'show');
-    Route::post('/ChatLog', 'store');
+    Route::get('/ChatLog/{chatLog}', 'show');
 });
 
-Route::controller(GhostRecordController::class)->group(function () {
-    Route::get('/GhostRecords', 'index');
-    Route::get('/GhostRecords/{id}', 'show');
-    Route::post('/GhostRecords', 'store');
-});
+Route::get('/GhostRecords', [GhostRecordController::class, 'index']);
+Route::get('/GhostRecords/{ghostRecord}', [GhostRecordController::class, 'show']);

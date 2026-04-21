@@ -9,19 +9,19 @@ class ChatLogController extends Controller
 {
     public function index()
     {
-        $object = ChatLog::all();
+        $objects = ChatLog::all();
 
-        return respone()->json($objects);
+        return response()->json($objects);
     }
 
     public function show(ChatLog $id)
     {
-        return respone()->json($id);
+        return response()->json($id);
     }
 
     public function store(Request $request)
     {
-        $valudated = $request->validate([
+        $validated = $request->validate([
             'username' => 'required|string|max:255',
             'message' => 'required|string|max:5000',
         ]);
