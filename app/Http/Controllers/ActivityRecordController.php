@@ -30,4 +30,16 @@ class ActivityRecordController extends Controller
 
         return response()->json($activityRecord, 201);
     }
+
+    public function recent(Request $request)
+    {
+        $seconds = $request->get('window', 1800);
+
+        $activity = ActivityRecord::where('created_at', '>=', now()->subSeconds($seconds))
+            ->selectRaw('user_id, SUM(activity_score) as total_activity')
+            ->groupBy('user_id')
+            ->get();
+
+        return response()->json($activity);
+    }
 }
