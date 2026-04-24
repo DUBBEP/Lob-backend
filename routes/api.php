@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [SessionController::class, 'destroy']);
     Route::post('/GhostRecords', [GhostRecordController::class, 'store']);
     Route::post('/PlayerRecords', [PlayerRecordController::class, 'store']);
-    Route::post('/ActivityRecord', [ActivityRecordController::class], 'store');
+    Route::post('/ActivityRecord', [ActivityRecordController::class, 'store']);
     Route::post('/ChatLog', [ChatLogController::class], 'store');
 });
 

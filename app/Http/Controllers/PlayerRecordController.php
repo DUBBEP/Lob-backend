@@ -26,7 +26,10 @@ class PlayerRecordController extends Controller
             'score'    => 'required|numeric',
         ]);
 
-        $playerRecord = $request->user()->PlayerRecords()->create($validated);
+        $playerRecord = $request->user()->playerRecords()->updateOrCreate(
+            ['user_id' => $request->user()->id], 
+            $validated
+        );
 
         return response()->json($playerRecord, 201);
     }
