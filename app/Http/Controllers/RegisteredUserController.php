@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
             // 'unique:users,name' checks if the username exists
             'name' => ['required', 'string', 'max:255', 'unique:users,name'],
             // Password::min(6) ensures length
-            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::min(6)],
+            'password' => ['required', 'confirmed', Password::min(6)],
         ]);
 
         $user = User::create([

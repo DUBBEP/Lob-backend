@@ -7,6 +7,7 @@ use App\Http\Controllers\PlayerRecordController;
 use App\Http\Controllers\ActivityRecordController;
 use App\Http\Controllers\ChatLogController;
 use App\Http\Controllers\GhostRecordController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/GhostRecords', [GhostRecordController::class, 'store']);
     Route::post('/PlayerRecords', [PlayerRecordController::class, 'store']);
     Route::post('/ActivityRecord', [ActivityRecordController::class, 'store']);
-    Route::post('/ChatLog', [ChatLogController::class], 'store');
+    Route::post('/ChatLog', [ChatLogController::class, 'store']);
 });
 
 Route::controller(PlayerRecordController::class)->group(function () {

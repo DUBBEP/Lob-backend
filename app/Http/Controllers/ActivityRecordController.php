@@ -33,10 +33,12 @@ class ActivityRecordController extends Controller
 
     public function recent(Request $request)
     {
-        $seconds = $request->get('window', 1800);
+        $seconds = $request->integer('window', 1800);
 
-        $activity = ActivityRecord::where('created_at', '>=', now()->subSeconds($seconds))
-            ->selectRaw('user_id, SUM(activity_score) as total_activity')
+        $activity = ActivityRecord::query()
+            ->where('created_at', '>=', now()->subSeconds($seconds))
+            ->select('user_id')
+            ->selectRaw('SUM(activity_score) as total_activity')
             ->groupBy('user_id')
             ->get();
 

@@ -26,7 +26,7 @@ class ChatLogController extends Controller
             'message' => 'required|string|max:5000',
         ]);
 
-        $chatLog = $required->user()->chatLog()->create($valudated);
+        $chatLog = $request->user()->chatLogs()->create($validated);
 
         return response()->json($chatLog, 201);
     }

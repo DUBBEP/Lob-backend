@@ -5,8 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\GhostRecord;
 use App\Models\PlayerRecord;
-use App\Models\ActivityRecords;
-use App\Models\ChatLogs;
+use App\Models\ActivityRecord;
+use App\Models\ChatLog;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,7 +53,7 @@ class User extends Authenticatable
         return $this->hasMany(GhostRecord::class);
     }
 
-    public function playerRecord() {
+    public function playerRecords() {
         return $this->hasOne(PlayerRecord::class);
     }
 
