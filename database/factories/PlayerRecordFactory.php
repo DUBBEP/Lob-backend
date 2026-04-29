@@ -20,7 +20,7 @@ class PlayerRecordFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'score' => fake()->randomFloat(2, 0, 80),
+            'score' => fake()->randomFloat(2, 80, 500),
             'username' => fake()->userName(), // Fallback if created in isolation
         ];
     }
